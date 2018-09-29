@@ -79,3 +79,17 @@ CREATE TABLE IF NOT EXISTS autores (
     fecha_naciemiento date,
     pais_origen varchar(40)
 );
+
+-- Llaves foraneas
+
+DROP TABLE IF EXISTS libros;
+CREATE TABLE IF NOT EXISTS libros (
+    libro_id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    autor_id INT UNSIGNED NOT NULL,
+    titulo VARCHAR(50) NOT NULL,
+    descripcion VARCHAR(250),
+    paginas INT UNSIGNED,
+    fecha_publicacion DATE NOT NULL,
+    fecha_creacion DATETIME DEFAULT current_timestamp,
+    FOREIGN KEY(autor_id) REFERENCES autores(id_autor)
+);
