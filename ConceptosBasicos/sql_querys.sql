@@ -93,3 +93,19 @@ CREATE TABLE IF NOT EXISTS libros (
     fecha_creacion DATETIME DEFAULT current_timestamp,
     FOREIGN KEY(autor_id) REFERENCES autores(id_autor)
 );
+
+/* Modificando tablas */
+
+-- Agregar/Eliminar columnas 
+ALTER TABLE libros ADD stock INT UNSIGNED NOT NULL DEFAULT 10;
+ALTER TABLE libros DROP stock;
+
+-- Renombrar la tabla
+ALTER TABLE usuarios RENAME users;
+
+-- Modificar una columna existente
+ALTER TABLE usuarios MODIFY telefono VARCHAR(50);
+
+-- Agregar/Eliminar llave foranea a una tala
+ALTER TABLE usuarios ADD FOREIGN KEY(grupo_id) REFERENCIES grupos(grupo_id);
+ALTER TABLE usuarios DROP FOREIGN KEY grupo_id;
