@@ -55,3 +55,24 @@ SELECT * from DATE(fecha_creacion) = CURDATE();
 -- Agregar dias a una fecha. DAY se puede cambiar por cualquier otro indicador de medida
 SELECT @now + INTERVAL 30 DAY;
 
+/* Crear una función */
+DELIMITER //
+CREATE FUNCTION add_days(fecha DATE, dias INT)
+RETURNS DATE
+BEGIN
+    RETURN fecha + INTERVAL dias DAY;
+END//
+
+DELIMITER ;
+
+-- Utilizar la función creada
+SELECT add_days(NOW(), 60);
+
+-- Listar las funciones 
+SELECT name FROM mysql.proc;
+
+-- Listar solo las funciones creadas por nosotros
+SELECT name FROM mysql.proc WHERE db = DATABASE() AND type = 'FUNCTION';
+
+-- Eliminar un a función
+DROP FUNCTION add_days;
